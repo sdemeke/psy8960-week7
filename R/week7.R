@@ -22,27 +22,34 @@ week7_tbl <- read_csv("../data/week3.csv") %>%
 week7_tbl %>% 
   GGally::ggpairs(columns = 5:13) #non index way to reference cols?
 
-p1 <- ggplot(data=week7_tbl,aes(x=timeStart,y=q1)) +
+(ggplot(data=week7_tbl,aes(x=timeStart,y=q1)) +
   geom_point() +
-  labs(x="Date of Experiment",y="Q1 Score") 
-ggsave(filename ="../figs/fig1.png",plot=p1) #pipe within generation
+  labs(x="Date of Experiment",y="Q1 Score") ) %>% 
+ggsave(filename ="../figs/fig1.png",.,scale=2) #pipe within generation
 
 
-p2 <- ggplot(data=week7_tbl,aes(x=q1,y=q2,color=gender)) +
+(ggplot(data=week7_tbl,aes(x=q1,y=q2,color=gender)) +
   geom_jitter() +
-  labs(color = "Participant Gender")
-ggsave(filename ="../figs/fig2.png",plot=p2) #sizing not great, legend half too big
+  labs(color = "Participant Gender")) %>% 
+ggsave(filename ="../figs/fig2.png",.,scale=2) 
 
-p3 <- ggplot(data=week7_tbl,aes(x=q1,y=q2,color=gender)) +
+(ggplot(data=week7_tbl,aes(x=q1,y=q2,color=gender)) +
   geom_jitter(color="black") +
   labs(color = "Participant Gender") + 
   facet_grid(.~ gender) + #same as cols=vars(gender)
   labs(x="Score on Q1",y="Score on Q2") +
-  theme(legend.position = "none")
-ggsave(filename ="../figs/fig3.png",plot=p3) #same issue as fig2 otherwise good
-p4 <- ggplot(data = week7_tbl,aes(x=gender,y=timeSpent)) +
+  theme(legend.position = "none") ) %>% 
+ggsave(filename ="../figs/fig3.png",.,scale=1.5) 
+(ggplot(data = week7_tbl,aes(x=gender,y=timeSpent)) +
   geom_boxplot() +
-  labs(x="Gender",y="Time Elapsed (mins)")
-ggsave(filename ="../figs/fig4.png",plot=p4) #looks good
+  labs(x="Gender",y="Time Elapsed (mins)") ) %>% 
+ggsave(filename ="../figs/fig4.png",.,scale=2) 
 
+
+(ggplot(data = week7_tbl,aes(x=q5,y=q7,color=condition,group=condition)) +
+  geom_jitter() +
+  geom_smooth(se=F,method = "lm") +
+  labs(x="Score on Q5",y="Score on Q7",color="Experimental Condition") +
+  theme(legend.position="bottom",legend.background = element_rect(fill="#DFDFDF")) ) %>%  #87.5%, 87.5%, 87.5%
+ggsave(filename ="../figs/fig5.png",.,scale=2) 
 
