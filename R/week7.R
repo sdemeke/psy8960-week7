@@ -40,3 +40,9 @@ p3 <- ggplot(data=week7_tbl,aes(x=q1,y=q2,color=gender)) +
   labs(x="Score on Q1",y="Score on Q2") +
   theme(legend.position = "none")
 ggsave(filename ="../figs/fig3.png",plot=p3) #same issue as fig2 otherwise good
+p4 <- ggplot(data = week7_tbl,aes(x=gender,y=timeSpent)) +
+  geom_boxplot() +
+  labs(x="Gender",y="Time Elapsed (mins)")
+ggsave(filename ="../figs/fig4.png",plot=p4) #looks good
+
+
