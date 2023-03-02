@@ -32,3 +32,11 @@ p2 <- ggplot(data=week7_tbl,aes(x=q1,y=q2,color=gender)) +
   geom_jitter() +
   labs(color = "Participant Gender")
 ggsave(filename ="../figs/fig2.png",plot=p2) #sizing not great, legend half too big
+
+p3 <- ggplot(data=week7_tbl,aes(x=q1,y=q2,color=gender)) +
+  geom_jitter(color="black") +
+  labs(color = "Participant Gender") + 
+  facet_grid(cols=vars(gender)) +
+  labs(x="Score on Q1",y="Score on Q2") +
+  theme(legend.position = "none")
+ggsave(filename ="../figs/fig3.png",plot=p3) #same issue as fig2 otherwise good
