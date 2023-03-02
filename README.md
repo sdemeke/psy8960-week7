@@ -1,1 +1,1 @@
-# sdemeke-psy8960-week7
+PSY 8960 Week 7 - Data Visualization with ggplot2
