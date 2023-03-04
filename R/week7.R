@@ -25,12 +25,12 @@ week7_tbl %>%
 (ggplot(data=week7_tbl,aes(x=timeStart,y=q1)) +
   geom_point() +
   labs(x="Date of Experiment",y="Q1 Score") ) %>% 
-ggsave(filename ="../figs/fig1.png",.,scale=2) 
+ggsave(filename ="../figs/fig1.png",.) 
 
 
 (ggplot(data=week7_tbl,aes(x=q1,y=q2,color=gender)) +
   geom_jitter() +
-  labs(color = "Participant Gender")) %>% 
+  labs(color = "Participant Gender"))  %>% 
 ggsave(filename ="../figs/fig2.png",.,scale=2) 
 
 (ggplot(data=week7_tbl,aes(x=q1,y=q2,color=gender)) +
@@ -50,5 +50,5 @@ ggsave(filename ="../figs/fig4.png",.,scale=2)
   geom_jitter() +
   geom_smooth(se=F,method = "lm") +
   labs(x="Score on Q5",y="Score on Q7",color="Experimental Condition") +
-  theme(legend.position="bottom",legend.background = element_rect(fill="#DFDFDF")) ) %>%  #87.5%, 87.5%, 87.5%
+  theme(legend.position="bottom",legend.background = element_rect(fill="#DFDFDF")) ) %>%  #87.5%r, 87.5%g, 87.5%b
 ggsave(filename ="../figs/fig5.png",.,scale=2) 
