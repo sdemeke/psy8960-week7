@@ -20,35 +20,36 @@ week7_tbl <- read_csv("../data/week3.csv") %>%
 
 #Visualization
 week7_tbl %>% 
-   select(starts_with("q"))
+   select(starts_with("q")) %>% 
    ggpairs() 
 (ggplot(data=week7_tbl,aes(x=timeStart,y=q1)) +
   geom_point() +
   labs(x="Date of Experiment",y="Q1 Score") ) %>% 
-ggsave(filename ="../figs/fig1.png",.) 
+ggsave(filename ="../figs/fig1.png",width = 6, height = 4) 
 
 
 (ggplot(data=week7_tbl,aes(x=q1,y=q2,color=gender)) +
   geom_jitter() +
   labs(color = "Participant Gender"))  %>% 
-ggsave(filename ="../figs/fig2.png",.,scale=2) 
+ggsave(filename ="../figs/fig2.png",width = 6, height = 4) 
 
 (ggplot(data=week7_tbl,aes(x=q1,y=q2,color=gender)) +
   geom_jitter(color="black") +
   labs(x="Score on Q1",y="Score on Q2") + 
   facet_grid(.~ gender) + 
   theme(legend.position = "none") ) %>% 
-ggsave(filename ="../figs/fig3.png",.,scale=1.5) 
+ggsave(filename ="../figs/fig3.png",width = 6, height = 4) 
 
 (ggplot(data = week7_tbl,aes(x=gender,y=timeSpent)) +
   geom_boxplot() +
-  labs(x="Gender",y="Time Elapsed (mins)") ) %>% 
-ggsave(filename ="../figs/fig4.png",.,scale=2) 
-
+  labs(x="Gender",y="Time Elapsed (mins)") +
+  scale_y_continuous()) %>% 
+ggsave(filename ="../figs/fig4.png",width = 6, height = 4) 
 
 (ggplot(data = week7_tbl,aes(x=q5,y=q7,color=condition,group=condition)) +
   geom_jitter() +
-  geom_smooth(se=F,method = "lm") +
+  geom_smooth(se=F,method = "lm",formula = 'y ~ x') +
   labs(x="Score on Q5",y="Score on Q7",color="Experimental Condition") +
   theme(legend.position="bottom",legend.background = element_rect(fill="#DFDFDF")) ) %>%  
-ggsave(filename ="../figs/fig5.png",.,scale=2) 
+ggsave(filename ="../figs/fig5.png",width = 6, height = 4) 
+   
